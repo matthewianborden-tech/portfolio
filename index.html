@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matthew Borden Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a stack of numbered drawing "sheets" on a paper ground, title-block header, stat strip, text beside figures. */
+:root{
+  --paper:#fbfaf7; --panel:#f1efe9; --ink:#1a1a1a; --body:#404040; --muted:#6b6b6b;
+  --blue:#35597e; --gold:#8f7326; --line:#d6d2c8;
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --text:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#15171a; --panel:#1e2125; --ink:#f0eee8; --body:#c9c6bf; --muted:#8f8d87;
+  --blue:#8fb1d6; --gold:#d2b25a; --line:#33373c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#15171a; --panel:#1e2125; --ink:#f0eee8; --body:#c9c6bf; --muted:#8f8d87;
+  --blue:#8fb1d6; --gold:#d2b25a; --line:#33373c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--body);font:16px/1.65 var(--text);
+  padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+.label{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+a{color:var(--blue)}
+header.cover{display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:center;padding-block:72px 48px;border-bottom:3px solid var(--gold)}
+header.cover h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+.name{color:var(--blue);font:500 1.3rem var(--display);margin:14px 0 4px}
+.meta{color:var(--muted);font-size:.95rem;margin:0}
+.intro{max-width:60ch;margin:22px 0 0}
+.cover img{width:100%;aspect-ratio:1;object-fit:cover;object-position:top;border:1px solid var(--line)}
+nav.index{padding-block:28px 8px}
+nav.index a{display:grid;grid-template-columns:5.5rem 1fr auto;gap:12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+nav.index a:hover .t{color:var(--blue)}
+nav.index .t{font:500 1.1rem var(--display)}
+nav.index .d{color:var(--muted);font-size:.85rem}
+section.sheet{padding-block:72px 24px;border-bottom:1px solid var(--line)}
+section.sheet h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;letter-spacing:-.015em;margin-top:14px}
+.sub{font-style:italic;color:var(--blue);margin:6px 0 0}
+.lede{max-width:62ch;font-size:1.1rem;margin:18px 0 0;color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-block:32px 20px;border-block:1px solid var(--line)}
+.stat{padding:20px 12px;text-align:center}
+.stat b{display:block;font:800 clamp(1.4rem,4vw,2rem) var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--muted)}
+.skills{display:flex;flex-wrap:wrap;gap:4px 0;padding:0;margin:0 0 28px;list-style:none;color:var(--blue);font-size:.9rem}
+.skills li+li::before{content:"•";color:var(--gold);margin-inline:.7em}
+.text{columns:2;column-gap:44px;max-width:none}
+.text p{margin:0 0 1.1em;break-inside:avoid}
+.text strong{color:var(--ink)}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.figs.two{grid-template-columns:repeat(2,1fr)}
+figure{margin:0;min-width:0}
+figure img{width:100%;height:100%;display:block}
+.frame{aspect-ratio:4/3;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+.frame img{object-fit:cover}
+.frame.fit img{object-fit:contain}
+.pending{display:grid;place-items:center;border:1px dashed var(--muted);color:var(--muted);font:500 12px var(--mono);letter-spacing:.12em;background:transparent}
+figcaption{font-style:italic;font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.45}
+.wide{margin-top:48px}
+.wide h3{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.wide .frame{aspect-ratio:auto;background:#fff}
+.wide .frame img{height:auto}
+.frame.tall{aspect-ratio:3/4}
+.vid{background:#000;border:1px solid var(--line);display:flex;justify-content:center}
+.vid video{display:block;width:100%;max-height:560px;object-fit:contain;background:#000}
+footer{padding-block:32px 56px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:760px){
+  header.cover{grid-template-columns:1fr;padding-block:48px 36px}
+  .cover img{max-width:200px;order:-1}
+  nav.index a{grid-template-columns:4.5rem 1fr}
+  nav.index .d{grid-column:2}
+  .text{columns:1}
+  .figs,.figs.two{grid-template-columns:1fr}
+}
+</style>
+
+<style>html{color-scheme:light}body{margin:0;font-family:system-ui,sans-serif}img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="cover">
+  <div>
+    <span class="label">Engineering Project Portfolio</span>
+    <h1 style="margin-top:16px">Matthew Borden</h1>
+    <p class="name">Mechanical Engineering, Purdue University</p>
+    <p class="meta">borden11@purdue.edu</p>
+    <p class="intro">Five projects spanning manufacturing process redesign, independent surface-modeling CAD work, constraint-driven assembly modeling, analog audio electronics, and an Arduino-controlled launcher, each shown through the goal, the work, and the result.</p>
+  </div>
+  <img src="img/photo.jpg" alt="Portrait of Matthew Borden">
+</header>
+
+<nav class="index" aria-label="Projects">
+  <a href="#hammer"><span class="label">Sheet 01</span><span class="t">Hammer Stand: DFM/DFA Redesign</span><span class="d">Spring 2026</span></a>
+  <a href="#car"><span class="label">Sheet 02</span><span class="t">3D Electric Sports Car</span><span class="d">Independent Study</span></a>
+  <a href="#nx"><span class="label">Sheet 03</span><span class="t">Siemens NX Assembly Projects</span><span class="d">CAD Coursework</span></a>
+  <a href="#eq"><span class="label">Sheet 04</span><span class="t">Three-Band Audio Equalizer</span><span class="d">Spring 2026</span></a>
+  <a href="#turret"><span class="label">Sheet 05</span><span class="t">Arduino-Controlled Ball-Launching Turret</span><span class="d">Spring 2026</span></a>
+</nav>
+
+<section class="sheet" id="hammer">
+  <span class="label">Sheet 01 · Spring 2026</span>
+  <h2>Hammer Stand: DFM/DFA Redesign</h2>
+  <p class="sub">ME 264, Introduction to Manufacturing for Mechanical Design · 2-person team</p>
+  <p class="lede">Dual-phase manufacturing project: fabricated a standard sheet-metal hammer stand, then ran a full DFM/DFA-optimized redesign built around a hinge-based support and a single additively manufactured bell tower assembly.</p>
+  <div class="stats">
+    <div class="stat"><b>84 → 88</b><span>DFA Score</span></div>
+    <div class="stat"><b>$46.56</b><span>Unit Cost (7% under budget)</span></div>
+    <div class="stat"><b>9 Steps</b><span>Assembly Time, 15–20 min</span></div>
+  </div>
+  <ul class="skills"><li>DFM</li><li>DFA</li><li>CNC Milling</li><li>Additive Manufacturing (FDM)</li><li>Engineering Drawings</li><li>Cost Estimation</li></ul>
+  <div class="text">
+    <p><strong>Phase 1: Sheet Metal Baseline.</strong> Fabricated the original hammer stand through sheet-metal bending, hole drilling, and mechanical fastening. The real lesson wasn't the tooling, it was tolerance stacking: small bend-angle deviations compounded across the multi-part assembly, creating misalignment that only showed up at final fit-up.</p>
+    <p><strong>Phase 2: DFM/DFA Redesign.</strong> Reworked the stand around a hinge-based hammer support and a combined bell tower / gusset bracket produced as a single additively manufactured part, constrained to a 2ft × 1ft × 1ft envelope and a $50 budget. The final design used 6 unique parts across CNC-milled 6061 aluminum and one ABS-printed component.</p>
+    <p><strong>Design for Assembly.</strong> Ran a formal DFA evaluation across two design iterations, raising the DFA score from 84 to 88 by cutting fasteners and replacing a slide-in mount with a hinge for no-reposition assembly. The documented assembly sequence came down to 9 steps in roughly 15–20 minutes.</p>
+    <p><strong>Cost and Manufacturing.</strong> Delivered the full assembly at $46.56 per unit, under the $50 cap, largely by combining the bell tower and gusset into one printed part and standardizing on M4 fasteners throughout, simplifying both the hardware bin and the CNC setups for the aluminum parts.</p>
+  </div>
+  <div class="figs">
+    <figure><div class="frame"><img src="img/hammer_hero.jpg" alt="Manufactured hammer stand" loading="lazy"></div><figcaption>Manufactured hammer stand: final physical build, engraved nameplate and hinge-based hammer support</figcaption></figure>
+    <figure><div class="frame"><img src="img/hammer_cad.jpg" alt="Final CAD assembly" loading="lazy"></div><figcaption>Final CAD assembly: hinge-based redesign, combined bell tower and gusset</figcaption></figure>
+    <figure><div class="frame"><img src="img/hammer_exploded.jpg" alt="Exploded assembly view" loading="lazy"></div><figcaption>Exploded assembly view: 6 components across CNC-milled aluminum and 3D-printed ABS</figcaption></figure>
+  </div>
+  <div class="wide"><h3>Engineering drawings</h3>
+    <figure><div class="frame"><img src="img/hammer_dwg_assembly.jpg" alt="Full assembly drawing" loading="lazy"></div><figcaption>Full assembly, exploded isometric view with BOM and title block</figcaption></figure>
+    <figure style="margin-top:24px"><div class="frame"><img src="img/hammer_dwg_baseplate.jpg" alt="Base plate drawing" loading="lazy"></div><figcaption>Base plate, 2D part drawing with dimensions and general tolerances</figcaption></figure>
+  </div>
+</section>
+
+<section class="sheet" id="car">
+  <span class="label">Sheet 02 · Independent Study</span>
+  <h2>3D Electric Sports Car</h2>
+  <p class="sub">Personal Project</p>
+  <p class="lede">Self-directed CAD study: taught myself Form, Fusion 360's surface-modeling toolset, with no course requirement behind it, and used it to design a complete two-door electric sports car from scratch.</p>
+  <div class="stats">
+    <div class="stat"><b>5098 mm</b><span>Overall Length, 1:1 Scale</span></div>
+    <div class="stat"><b>100%</b><span>Survey Design Approval</span></div>
+    <div class="stat"><b>75%</b><span>Would Buy As First Car</span></div>
+  </div>
+  <ul class="skills"><li>Fusion 360 Form</li><li>Surface Modeling</li><li>Product Design</li><li>User Research</li><li>Design Criteria &amp; Evaluation</li></ul>
+  <div class="text">
+    <p><strong>Self-Directed CAD Challenge.</strong> Designed a complete two-door electric sports car with four wheels, working proportions, lights, doors, mirrors, a charging port, and a continuous body surface with no visible gaps, using a surface-modeling tool I had never touched before starting.</p>
+    <p><strong>Grounded In Research, Not Just Aesthetics.</strong> Modeled the car 1:1 against a BMW 5-series for reference proportions (5098 × 1420 × 1943 mm), and set the brief (target audience, price point, environmental angle) from researched sources before any modeling began.</p>
+    <p><strong>Solving It Without A Tutorial.</strong> The hardest part was connecting tools, not learning any one of them: building a continuous side panel from the wheel arches meant finding the Bridge tool buried inside Modify, then deleting the leftover construction lines. Mirroring across the centerline kept the body symmetrical and cut the modeling work roughly in half.</p>
+    <p><strong>Validated With Real Feedback.</strong> Two design teachers and a peer survey reviewed the finished model: 100% rated the design and its sportiness positively, and 75% said they'd buy it as a first car, with the roofline and door definition flagged as the clearest next refinements.</p>
+  </div>
+  <div class="figs">
+    <figure><div class="frame"><img src="img/car_front.jpg" alt="Front render" loading="lazy"></div><figcaption>Front render: grille geometry and headlight clusters</figcaption></figure>
+    <figure><div class="frame"><img src="img/car_rear.jpg" alt="Rear render" loading="lazy"></div><figcaption>Rear render: spoiler mounting and taillight strip</figcaption></figure>
+    <figure><div class="frame fit"><img src="img/car_side.jpg" alt="Side profile" loading="lazy"></div><figcaption>Side profile: full body surface and proportions</figcaption></figure>
+  </div>
+  <div class="wide"><h3>Component breakdown</h3>
+    <figure><div class="frame"><img src="img/car_labeled.jpg" alt="Labeled side profile" loading="lazy"></div><figcaption>Component callout on the side profile: grille, hood, mirrors, seat, charging port, spoiler, and tail lights</figcaption></figure>
+  </div>
+</section>
+
+<section class="sheet" id="nx">
+  <span class="label">Sheet 03 · Siemens NX</span>
+  <h2>Siemens NX Assembly Projects</h2>
+  <p class="sub">CAD Coursework</p>
+  <p class="lede">Two full 3D assemblies built in Siemens NX, focused on dimensional accuracy, constraint-based assembly management, and modeling real mechanical motion.</p>
+  <div class="stats">
+    <div class="stat"><b>2</b><span>Full Assemblies</span></div>
+    <div class="stat"><b>1:1</b><span>Dimensional Accuracy</span></div>
+    <div class="stat"><b>Motion</b><span>Kinematic Chain Modeled</span></div>
+  </div>
+  <ul class="skills"><li>Siemens NX</li><li>Assembly Navigator</li><li>Mating Constraints</li><li>Kinematics</li><li>Dimensional Accuracy</li></ul>
+  <div class="text">
+    <p><strong>Butterfly Valve Assembly.</strong> Modeled an industrial butterfly valve to its published dimensions, aiming for a true 1:1 representation instead of a rough approximation. Most of the difficulty was organizational: keeping a large set of components in order inside the Assembly Navigator and applying Touch and Align constraints so the body, seat, disc, and stem all resolved into one fully constrained assembly.</p>
+    <p><strong>Little Blazer Engine Assembly.</strong> Built with function in mind from the start, so the model captures how the engine moves and not only how it looks. Constraints were set up so flywheel rotation drives the piston through the connecting rod and crankshaft, and the fuel tank was left free to slide along the base so its position stays adjustable.</p>
+  </div>
+  <div class="figs two">
+    <figure><div class="frame fit"><img src="img/nx_valve.jpg" alt="Butterfly valve assembly in Siemens NX" loading="lazy"></div><figcaption>Butterfly valve assembly: body, actuator lever and flange hardware, with the constraint list in the Assembly Navigator</figcaption></figure>
+    <figure><div class="frame fit"><img src="img/nx_engine.jpg" alt="Little Blazer engine assembly in Siemens NX" loading="lazy"></div><figcaption>Little Blazer engine assembly: flywheel, piston, crank linkage and sliding fuel tank</figcaption></figure>
+  </div>
+</section>
+
+<section class="sheet" id="eq">
+  <span class="label">Sheet 04 · Spring 2026</span>
+  <h2>Three-Band Audio Equalizer</h2>
+  <p class="sub">ECE 2007, Purdue University</p>
+  <p class="lede">Designed and built a three-band (bass, mid, treble) audio equalizer on a breadboard, from passive filters through to a speaker-driving amplifier stage.</p>
+  <div class="stats">
+    <div class="stat"><b>3</b><span>Bands: Bass, Mid, Treble</span></div>
+    <div class="stat"><b>±10%</b><span>Filter Cutoffs vs. Spec</span></div>
+    <div class="stat"><b>LM386</b><span>Power Amplifier Stage</span></div>
+  </div>
+  <ul class="skills"><li>Analog Circuit Design</li><li>Passive RC Filters</li><li>Op-Amp Buffers</li><li>Oscilloscope Measurement</li><li>Frequency Response Analysis</li></ul>
+  <div class="text">
+    <p><strong>Signal path.</strong> Each band uses a passive RC filter followed by an op-amp buffer, with its own volume control, so the bass, mid and treble levels can be set independently. An LM386 power amplifier stage drives the speakers.</p>
+    <p><strong>Validation.</strong> Measured the frequency response on an oscilloscope and confirmed that every filter cutoff frequency landed within ±10% of spec. One result deviated from spec, and I traced it back to its root causes.</p>
+  </div>
+  <div class="figs two">
+    <figure><div class="frame fit"><img src="img/eq_photo.jpg" alt="Equalizer circuit built on a breadboard" loading="lazy"></div><figcaption>Equalizer on the breadboard: three trimmer controls, op-amp ICs, filter components and the supply terminals</figcaption></figure>
+    <figure><div class="vid"><video controls playsinline preload="metadata" poster="img/eq_poster.jpg"><source src="img/eq_demo.mp4" type="video/mp4"></video></div><figcaption>Demo video: the circuit connected to a pair of speakers, with an oscilloscope probe on the board</figcaption></figure>
+  </div>
+</section>
+
+<section class="sheet" id="turret" style="border-bottom:0">
+  <span class="label">Sheet 05 · Spring 2026</span>
+  <h2>Arduino-Controlled Ball-Launching Turret</h2>
+  <p class="sub">ASME Small Projects · team build</p>
+  <p class="lede">A turret with an Arduino-driven rotating base and a cannon mechanism that launches golf balls at fixed targets, built by a small team on a $100 budget.</p>
+  <div class="stats">
+    <div class="stat"><b>$100</b><span>Total Team Budget</span></div>
+    <div class="stat"><b>Arduino</b><span>Base Rotation Control</span></div>
+    <div class="stat"><b>Golf Ball</b><span>Fixed-Target Launcher</span></div>
+  </div>
+  <ul class="skills"><li>Arduino</li><li>CAD Modeling</li><li>Control Circuitry</li><li>3D Printing</li><li>Budget-Constrained Design</li></ul>
+  <div class="text">
+    <p><strong>The build.</strong> The turret pairs a base that rotates under Arduino control with a cannon mechanism that launches golf balls at fixed targets. The $100 team budget set the limit on parts and materials.</p>
+    <p><strong>My contribution.</strong> Worked on the CAD modeling and the control circuitry, supporting the design from concept through fabrication and testing.</p>
+  </div>
+  <div class="figs two">
+    <figure><div class="frame fit tall"><img src="img/turret_photo.jpg" alt="Assembled ball-launching turret" loading="lazy"></div><figcaption>Assembled turret: rotating base, support towers, and the launcher housing with its barrel</figcaption></figure>
+    <figure><div class="frame pending tall">CAD IMAGE PENDING</div><figcaption>CAD model of the turret (image to be added)</figcaption></figure>
+  </div>
+</section>
+
+<footer><span>Matthew Borden</span><span>Engineering Project Portfolio</span></footer>
+</div>
+
+</body>
+</html>
